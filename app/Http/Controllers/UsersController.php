@@ -138,23 +138,23 @@ class UsersController extends Controller
             $surat_dispen               = $request->file('surat_dispen');
             $akta_cerai                 = $request->file('akta_cerai');
 
-            $file_ktp_lk                     = date('Y-m-d').$ktp_lk->getClientOriginalName();
-            $file_ktp_pr                     = date('Y-m-d').$ktp_pr->getClientOriginalName(); 
-            $file_ijasah_lk                  = date('Y-m-d').$ijasah_lk->getClientOriginalName(); 
-            $file_ijasah_pr                  = date('Y-m-d').$ijasah_pr->getClientOriginalName(); 
-            $file_akta_lk                    = date('Y-m-d').$akta_lk->getClientOriginalName(); 
-            $file_akta_pr                    = date('Y-m-d').$akta_pr->getClientOriginalName(); 
-            $file_surat_pengantar            = date('Y-m-d').$surat_pengantar->getClientOriginalName(); 
-            $file_surat_asal_lk              = date('Y-m-d').$surat_asal_lk->getClientOriginalName(); 
-            $file_surat_asal_pr              = date('Y-m-d').$surat_asal_pr->getClientOriginalName(); 
-            $file_surat_persetujuan_ortu_lk  = date('Y-m-d').$surat_persetujuan_ortu_lk->getClientOriginalName(); 
-            $file_surat_persetujuan_ortu_pr  = date('Y-m-d').$surat_persetujuan_ortu_pr->getClientOriginalName(); 
-            $file_surat_izin_ortu_pr         = date('Y-m-d').$surat_izin_ortu_pr->getClientOriginalName(); 
-            $file_ktp_wali                   = date('Y-m-d').$ktp_wali->getClientOriginalName(); 
-            $file_fc_kutipan_akta            = date('Y-m-d').$fc_kutipan_akta->getClientOriginalName(); 
-            $file_surat_pernyataan_status    = date('Y-m-d').$surat_pernyataan_status->getClientOriginalName(); 
-            $file_foto_biru                  = date('Y-m-d').$foto_biru->getClientOriginalName(); 
-            $file_surat_dispen               = date('Y-m-d').$surat_dispen->getClientOriginalName(); 
+            $file_ktp_lk                     = date('Y-m-d').(' ').$ktp_lk->getClientOriginalName();
+            $file_ktp_pr                     = date('Y-m-d').(' ').$ktp_pr->getClientOriginalName(); 
+            $file_ijasah_lk                  = date('Y-m-d').(' ').$ijasah_lk->getClientOriginalName(); 
+            $file_ijasah_pr                  = date('Y-m-d').(' ').$ijasah_pr->getClientOriginalName(); 
+            $file_akta_lk                    = date('Y-m-d').(' ').$akta_lk->getClientOriginalName(); 
+            $file_akta_pr                    = date('Y-m-d').(' ').$akta_pr->getClientOriginalName(); 
+            $file_surat_pengantar            = date('Y-m-d').(' ').$surat_pengantar->getClientOriginalName(); 
+            $file_surat_asal_lk              = date('Y-m-d').(' ').$surat_asal_lk->getClientOriginalName(); 
+            $file_surat_asal_pr              = date('Y-m-d').(' ').$surat_asal_pr->getClientOriginalName(); 
+            $file_surat_persetujuan_ortu_lk  = date('Y-m-d').(' ').$surat_persetujuan_ortu_lk->getClientOriginalName(); 
+            $file_surat_persetujuan_ortu_pr  = date('Y-m-d').(' ').$surat_persetujuan_ortu_pr->getClientOriginalName(); 
+            $file_surat_izin_ortu_pr         = date('Y-m-d').(' ').$surat_izin_ortu_pr->getClientOriginalName(); 
+            $file_ktp_wali                   = date('Y-m-d').(' ').$ktp_wali->getClientOriginalName(); 
+            $file_fc_kutipan_akta            = date('Y-m-d').(' ').$fc_kutipan_akta->getClientOriginalName(); 
+            $file_surat_pernyataan_status    = date('Y-m-d').(' ').$surat_pernyataan_status->getClientOriginalName(); 
+            $file_foto_biru                  = date('Y-m-d').(' ').$foto_biru->getClientOriginalName(); 
+            $file_surat_dispen               = date('Y-m-d').(' ').$surat_dispen->getClientOriginalName(); 
 
             if ($akta_cerai == NULL) {
                 $file_akta_cerai             = '';

@@ -20,7 +20,6 @@
                             <th>Nama Pengantin Pria</th>
                             <th>Nama Pengantin Wanita</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,11 +36,6 @@
                                     @elseif ($row->status == 3)
                                         <a class="badge badge-danger">Ditolak</a>
                                     @endif
-                                </td>
-                                <td>
-                                    <a class="btn btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
                                 </td>
                             </tr>
                         @endforeach

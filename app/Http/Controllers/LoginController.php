@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -33,9 +34,22 @@ class LoginController extends Controller
 
         if (Auth::attempt($loginData)){
             if (Auth::user()->role == 'admin') {
-                return redirect()->route('admin/dashboard');
+
+                $user = Auth::user();
+                Session::put('id', $user->id);
+                Session::put('name', $user->name);
+                Session::put('email', $user->email);
+                Session::put('role', $user->role);
                 
+                return redirect()->route('admin/dashboard');
             } elseif (Auth::user()->role == 'user') {
+
+                $user = Auth::user();
+                Session::put('id', $user->id);
+                Session::put('name', $user->name);
+                Session::put('email', $user->email);
+                Session::put('role', $user->role);
+                
                 return redirect()->route('dashboard');
             } else {
                 return redirect()->route('login')->with('gagal', 'Kamu tidak memiliki akses!');

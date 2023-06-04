@@ -22,6 +22,8 @@
 
     <link href="{{ asset('/') }}assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     @stack('style')
 </head>
 
@@ -113,6 +115,16 @@
                 ' ',
                 '{{ $message }}',
                 'success'
+            )
+        </script>
+    @endif
+
+    @if ($message = Session::get('ditolak'))
+        <script>
+            Swal.fire(
+                ' ',
+                '{{ $message }}',
+                'error'
             )
         </script>
     @endif
