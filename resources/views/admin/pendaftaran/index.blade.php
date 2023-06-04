@@ -38,7 +38,7 @@
                                 <td>
                                     <a class="btn btn-primary"
                                         href="{{ url('admin/detail-pendaftaran/' . $row->user_id) }}">
-                                        <i class="fas fa-edit"></i>
+                                        <i class="bi bi-three-dots"></i>
                                     </a>
                                 </td>
                             </tr>

@@ -45,14 +45,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     Route::get('pendaftaran', [AdminController::class, 'pendaftaran'])->name('pendaftaran');
-    
     Route::get('detail-pendaftaran/{id}', [AdminController::class, 'detailPendaftaran'])->name('detail-pendaftaran/');
     Route::post('update-pendaftaran/{id}', [AdminController::class, 'updatePendaftaran'])->name('update-pendaftaran/');
     Route::get('tolak-pendaftaran/{id}', [AdminController::class, 'tolakPendaftaran'])->name('tolak-pendaftaran/');
     
     Route::post('create-jadwal', [AdminController::class, 'createJadwal'])->name('create-jadwal');
 
-    Route::get('jadwal', [AdminController::class, 'showJadwal'])->name('jadwal');
+    Route::get('penjadwalan', [AdminController::class, 'showJadwal'])->name('penjadwalan');
+    Route::get('detail-penjadwalan/{id}', [AdminController::class, 'showDetailJadwal'])->name('detail-penjadwalan/');
 });
 
 /* 
@@ -61,9 +61,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 
 
 Route::middleware(['auth', 'userAkses:user'])->group(function () {
     Route::get('dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
-
+    
     Route::get('pendaftaran', [UsersController::class, 'pendaftaran'])->name('pendaftaran');
     Route::get('createPendaftaran', [UsersController::class, 'create'])->name('createPendaftaran');
     Route::post('storePendaftaran', [UsersController::class, 'store'])->name('storePendaftaran');
     
+    Route::get('penjadwalan', [UsersController::class, 'showJadwal'])->name('penjadwalan');
 });

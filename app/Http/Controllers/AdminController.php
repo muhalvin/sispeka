@@ -102,9 +102,24 @@ class AdminController extends Controller
     {
         $jadwal = DB::table('jadwals')
                 ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
+                ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
                 ->get();
             
         return view('admin/jadwal/index')->with([
+            'title'         => 'Jadwal Pelaksanaan Nikah',
+            'jadwal'         => $jadwal
+        ]);
+    }
+
+    public function showDetailJadwal(Request $request, $user_id)
+    {
+        $jadwal = DB::table('jadwals')
+                ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
+                ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
+                ->where('users.id', '=', $user_id)
+                ->get();
+            
+        return view('admin/jadwal/detail')->with([
             'title'         => 'Jadwal Pelaksanaan Nikah',
             'jadwal'         => $jadwal
         ]);

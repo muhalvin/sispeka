@@ -235,4 +235,19 @@ class UsersController extends Controller
             return redirect()->route('pendaftaran')->with('sukses', 'Pendaftaran anda telah disimpan');
         }
     }
+
+     // Menu Pendaftaran
+     public function showJadwal()
+     {
+         $jadwal = DB::table('jadwals')
+                 ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
+                 ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
+                 ->where('users.id', '=', Auth::user()->id)
+                 ->get();
+             
+         return view('user/penjadwalan/index')->with([
+             'title'         => 'Tanggal Pelaksanaan Nikah',
+             'jadwal'         => $jadwal
+         ]);
+     }
 }

@@ -19,7 +19,6 @@
                             <th>Nama Pengantin Wanita</th>
                             <th>Tanggal</th>
                             <th>Jam</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,11 +30,6 @@
                                 <td>{{ $row->nama_pengantin_pr }}</td>
                                 <td>{{ $row->tanggal }}</td>
                                 <td>{{ $row->jam }}</td>
-                                <td>
-                                    <a href="{{ url('admin/detail-penjadwalan/' . $row->user_id) }}" class="btn btn-primary">
-                                        <i class="bi bi-three-dots"></i>
-                                    </a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

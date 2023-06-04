@@ -73,7 +73,7 @@
                                         Tentukan Jadwal
                                     </button>
                                 @else
-                                    <a href="{{ route('admin/jadwal') }}" class="btn btn-secondary">
+                                    <a href="{{ route('admin/penjadwalan') }}" class="btn btn-secondary">
                                         Lihat Jadwal
                                     </a>
                                 @endif
