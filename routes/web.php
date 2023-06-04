@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 
 
     Route::get('penjadwalan', [AdminController::class, 'showJadwal'])->name('penjadwalan');
     Route::get('detail-penjadwalan/{id}', [AdminController::class, 'showDetailJadwal'])->name('detail-penjadwalan/');
+    Route::post('update-penjadwalan/{id}', [AdminController::class, 'updateJadwal'])->name('update-penjadwalan/');
 });
 
 /* 

@@ -76,7 +76,7 @@ class AdminController extends Controller
             'penghulu'  => 'required|string',
             'biaya'     => 'required|numeric',
             'tanggal'   => 'required|date',
-            'jam'       => 'required|date_format:H:i',
+            'jam'       => 'required',
         ];
 
         $validate = Validator::make($request->all(), $rules);
@@ -123,5 +123,36 @@ class AdminController extends Controller
             'title'         => 'Jadwal Pelaksanaan Nikah',
             'jadwal'         => $jadwal
         ]);
+    }
+
+    public function updateJadwal(Request $request, $user_id)
+    {
+
+        $rules = [
+            'user_id'   => 'required|string',
+            'penghulu'  => 'required|string',
+            'biaya'     => 'required|numeric',
+            'tanggal'   => 'required|date',
+            'jam'       => 'required',
+        ];
+
+        $validate = Validator::make($request->all(), $rules);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->messages())->withInput();
+        } else { 
+            $jadwal = DB::table('jadwals')
+                ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
+                ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
+                ->where('users.id', '=', $user_id)
+                ->update([
+                    'penghulu'  => $request->penghulu,
+                    'biaya'     => $request->biaya,
+                    'tanggal'   => $request->tanggal,
+                    'jam'       => $request->jam,
+                ]);
+
+        return redirect()->back()->with('sukses', 'Jadwal Pelaksanaan Nikah Diperbarui!');
+        }
     }
 }

@@ -30,36 +30,35 @@
                                     value="{{ $item->nama_pengantin_pr }}" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label>Umur Pria</label>
+                                <label>Penghulu</label>
                                 <input type="text" class="form-control form-control-user" name=""
-                                    value="{{ $item->umur_lk }} Tahun" readonly>
+                                    value="Bpk. {{ $item->penghulu }}" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label>Umur Wanita</label>
+                                <label>Tanggal</label>
                                 <input type="text" class="form-control form-control-user" name=""
-                                    value="{{ $item->umur_pr }} Tahun" readonly>
+                                    value="{{ $item->tanggal }}" readonly>
                             </div>
-                            <div class="col-md-6">
-                                <label>Status Pendaftaran</label>
-                                @if ($item->status == 1)
-                                    <div style="font-size: 18px;">
-                                        <span class="badge badge-warning">Pendaftaran Sedang Dalam Proses</span>
-                                    </div>
-                                @elseif ($item->status == 2)
-                                    <div>
-                                        <span class="badge badge-success">Pendaftaran Disetujui</span>
-                                    </div>
-                                @else
-                                    <div>
-                                        <span class="badge badge-danger">Pendaftaran Ditolak, Yee Gagal Nikah!</span>
-                                    </div>
-                                @endif
+                            <div class="col-md-6 mb-3">
+                                <label>Jam</label>
+                                <input type="text" class="form-control form-control-user" name=""
+                                    value="{{ $item->jam }}" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Biaya</label>
+                                <input type="text" class="form-control form-control-user" name=""
+                                    value="@money($item->biaya)" readonly>
                             </div>
                         </div>
 
                     </div>
                     <div class="col-md-12" style="padding-top: 2vh;">
-                        <a href="{{ route('admin/penjadwalan') }}" class="btn btn-primary">Kembali</a>
+                        <a href="{{ route('admin/penjadwalan') }}" class="btn btn-warning">Kembali</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Ubah Jadwal
+                        </button>
                     </div>
                 </form>
             @endforeach
@@ -73,10 +72,10 @@
                 <div class="modal-header">
                     <h6 class="modal-title fs-5" id="exampleModalLabel">Edit Jadwal Pernikahan</h5>
                 </div>
-                <form action="{{ route('admin/create-jadwal') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        @foreach ($jadwal as $item)
+                @foreach ($jadwal as $item)
+                    <form action="{{ url('admin/update-penjadwalan/' . $item->user_id) }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
                             <div class="col-md-12">
                                 <div class="form-group row">
                                     <div class="col-md-6 mb-3" hidden>
@@ -87,32 +86,32 @@
                                     <div class="col-md-6 mb-3">
                                         <label>Nama Penghulu</label>
                                         <input type="text" class="form-control form-control-user" name="penghulu"
-                                            value="">
+                                            value="{{ $item->penghulu }}">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label>Biaya</label>
                                         <input type="number" class="form-control form-control-user" name="biaya"
-                                            value="">
+                                            value="{{ $item->biaya }}">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label>Tanggal</label>
                                         <input type="date" class="form-control form-control-user" name="tanggal"
-                                            value="">
+                                            value="{{ $item->tanggal }}">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label>Jam</label>
                                         <input type="time" class="form-control form-control-user" name="jam"
-                                            value="">
+                                            value="{{ $item->jam }}">
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Buat Jadwal</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                @endforeach
             </div>
         </div>
     </div>
