@@ -13,10 +13,44 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $data = [
-            'title'     => 'Dashboard'
-        ];
-        return view('admin/dashboard/index', $data);
+        $users = DB::table('users')
+            ->where('role','=','user')
+            ->get();
+        $jml_user = $users->count();
+        
+        $pendaftar = DB::table('pendaftaran')
+            ->get();
+        $jml_daftar = $pendaftar->count();
+
+        $pendaftar_proses = DB::table('pendaftaran')
+            ->where('status', '=', 1)
+            ->get();
+        $jml_proses = $pendaftar_proses->count();
+        
+        $pendaftar_selesai = DB::table('pendaftaran')
+            ->where('status', '=', 2)
+            ->get();
+        $jml_selesai = $pendaftar_selesai->count();
+        
+        $pendaftar_ditolak = DB::table('pendaftaran')
+            ->where('status', '=', 3)
+            ->get();
+        $jml_ditolak = $pendaftar_ditolak->count();
+        
+        $sql = DB::table('jadwals')
+            ->where('tanggal', '>', now())
+            ->get();
+        $nikah = $sql->count();
+            
+        return view('admin/dashboard/index')->with([
+            'title'         => 'Dashboard',
+            'jml_user'      => $jml_user,
+            'jml_daftar'    => $jml_daftar,
+            'jml_proses'    => $jml_proses,
+            'jml_ditolak'   => $jml_ditolak,
+            'jml_selesai'   => $jml_selesai,
+            'jadwal_nikah'  => $nikah,
+        ]);
     }
 
     // Menu Pendaftaran

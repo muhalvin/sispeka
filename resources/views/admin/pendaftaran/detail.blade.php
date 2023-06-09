@@ -41,16 +41,16 @@
                             </div>
                             <div class="col-md-6 mb-3 mt-3">
                                 <label>Foto Pengantin Pria</label>
-                                <div class="row-md-6">
+                                <div class="row-md-6" style="border: 2px solid gray">
                                     <iframe src="{{ url('storage/pendaftaran/FOTO/' . $item->foto_pengantin_lk) }}"
-                                        frameborder="1" height="300vh" width="100%"></iframe>
+                                        frameborder="4" height="300vh" width="100%"></iframe>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3 mt-3">
                                 <label>Foto Pengantin Wanita</label>
-                                <div class="row-md-6">
+                                <div class="row-md-6" style="border: 2px solid gray">
                                     <iframe src="{{ url('storage/pendaftaran/FOTO/' . $item->foto_pengantin_pr) }}"
-                                        frameborder="1" height="300vh" width="100%"></iframe>
+                                        frameborder="4" height="300vh" width="100%"></iframe>
                                 </div>
                             </div>
                             <div class="col-md-6">
