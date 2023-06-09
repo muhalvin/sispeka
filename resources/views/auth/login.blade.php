@@ -13,8 +13,8 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
-                                    <p>Masukkan email dan password anda</p>
+                                    <h1 class="h4 text-gray-900 mb-4">KUA PETERONGAN!</h1>
+                                    <p>Masukkan email dan password anda!</p>
                                 </div>
                                 @if ($errors->any())
                                     @foreach ($errors->all() as $message)
