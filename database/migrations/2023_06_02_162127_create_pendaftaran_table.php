@@ -33,7 +33,8 @@ return new class extends Migration
             $table->string('ktp_wali')->nullable();
             $table->string('fc_kutipan_akta')->nullable();
             $table->string('surat_pernyataan_status')->nullable();
-            $table->string('foto_biru')->nullable();
+            $table->string('foto_pengantin_lk')->nullable();
+            $table->string('foto_pengantin_pr')->nullable();
             $table->string('surat_dispen')->nullable();
             $table->string('akta_cerai')->nullable();
             $table->enum('status',['1', '2', '3'])->nullable();

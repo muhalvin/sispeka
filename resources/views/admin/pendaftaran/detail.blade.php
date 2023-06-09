@@ -39,8 +39,22 @@
                                 <input type="text" class="form-control form-control-user" name=""
                                     value="{{ $item->umur_pr }} Tahun" readonly>
                             </div>
+                            <div class="col-md-6 mb-3 mt-3">
+                                <label>Foto Pengantin Pria</label>
+                                <div class="row-md-6">
+                                    <iframe src="{{ url('storage/pendaftaran/FOTO/' . $item->foto_pengantin_lk) }}"
+                                        frameborder="1" height="300vh" width="100%"></iframe>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3 mt-3">
+                                <label>Foto Pengantin Wanita</label>
+                                <div class="row-md-6">
+                                    <iframe src="{{ url('storage/pendaftaran/FOTO/' . $item->foto_pengantin_pr) }}"
+                                        frameborder="1" height="300vh" width="100%"></iframe>
+                                </div>
+                            </div>
                             <div class="col-md-6">
-                                <label>Umur Wanita</label>
+                                <label>Status Pendaftaran</label>
                                 @if ($item->status == 1)
                                     <div style="font-size: 18px;">
                                         <span class="badge badge-warning">Pendaftaran Sedang Dalam Proses</span>
@@ -113,7 +127,8 @@
                                 <th>KTP Wali</th>
                                 <th>FC Kutipan Akta</th>
                                 <th>Surat Pernyataan Status</th>
-                                <th>Foto Biru</th>
+                                <th>Foto Pengantin Pria</th>
+                                <th>Foto Pengantin Wanita</th>
                                 <th>Surat Dispen</th>
                                 <th>Akta Cerai</th>
                             </tr>
@@ -246,9 +261,20 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($row->foto_biru != null)
+                                        @if ($row->foto_pengantin_lk != null)
                                             <a class="btn btn-primary" target="_blank"
-                                                href="{{ url('storage/pendaftaran/FOTO BIRU/' . $row->foto_biru) }}">
+                                                href="{{ url('storage/pendaftaran/FOTO/' . $row->foto_pengantin_lk) }}">
+                                                <i class="bi bi-filetype-pdf"></i>
+                                            </a>
+                                        @else
+                                            <span class="badge badge-warning">Tidak ada file</span>
+                                        @endif
+
+                                    </td>
+                                    <td>
+                                        @if ($row->foto_pengantin_pr != null)
+                                            <a class="btn btn-primary" target="_blank"
+                                                href="{{ url('storage/pendaftaran/FOTO/' . $row->foto_pengantin_pr) }}">
                                                 <i class="bi bi-filetype-pdf"></i>
                                             </a>
                                         @else
