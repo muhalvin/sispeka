@@ -53,7 +53,11 @@
                                         frameborder="4" height="300vh" width="100%"></iframe>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3 mt-3">
+                                <label>Tanggal Pilihan</label>
+                                <input type="text" class="form-control" value="{{ $item->tanggal_pilihan }}" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3 mt-3">
                                 <label>Status Pendaftaran</label>
                                 @if ($item->status == 1)
                                     <div style="font-size: 18px;">
@@ -74,10 +78,19 @@
                     </div>
                     <div class="col-md-12" style="padding-top: 2vh;">
                         <a href="{{ route('admin/pendaftaran') }}" class="btn btn-primary">Kembali</a>
-                        <a href="{{ url('admin/tolak-pendaftaran/' . $item->user_id) }}" class="btn btn-danger">
-                            Tolak
-                        </a>
-                        <button type="submit" class="btn btn-success">Setujui</button>
+                        @if ($item->status == '1')
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalTolak">
+                                Tolak Pendaftaran
+                            </button>
+                            {{-- <a href="{{ url('admin/tolak-pendaftaran/' . $item->user_id) }}" class="btn btn-danger">
+                                Tolak
+                            </a> --}}
+                        @endif
+
+                        @if ($item->status == '1' or $item->status == '3')
+                            <button type="submit" class="btn btn-success">Setujui</button>
+                        @endif
+
                         @if ($item->status == '2')
                             @foreach ($jadwal as $row)
                                 @if ($row->tanggal == null)
@@ -311,9 +324,6 @@
         </div>
     </div>
 
-
-
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -359,6 +369,34 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Buat Jadwal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalTolak" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tolak Pendaftaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/tolak-pendaftaran/') }}/{{ $id }}" method="post">
+                    <input name="_method" type="hidden" value="PATCH">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="col-md-12 mb-3">
+                            <label>Pesan</label>
+                            <input type="text" class="form-control" name="pesan" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>

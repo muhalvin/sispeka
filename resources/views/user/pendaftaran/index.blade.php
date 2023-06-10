@@ -2,6 +2,7 @@
 
 @section('content')
     <!-- Page Heading -->
+
     <div class="mb-2">
         <a href="{{ route('createPendaftaran') }}" class="btn btn-primary">Buat Pengajuan</a>
     </div>
@@ -10,6 +11,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"></h6>
+            @foreach ($users as $row)
+            @endforeach
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -19,7 +22,9 @@
                             <th>No</th>
                             <th>Nama Pengantin Pria</th>
                             <th>Nama Pengantin Wanita</th>
+                            <th>Tanggal Pilihan</th>
                             <th>Status</th>
+                            <th>Komentar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +33,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $row->nama_pengantin_lk }}</td>
                                 <td>{{ $row->nama_pengantin_pr }}</td>
+                                <td>{{ $row->tanggal_pilihan }}</td>
                                 <td>
                                     @if ($row->status == 1)
                                         <a class="badge badge-warning">Proses</a>
@@ -35,6 +41,13 @@
                                         <a class="badge badge-success">Disetujui</a>
                                     @elseif ($row->status == 3)
                                         <a class="badge badge-danger">Ditolak</a>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($row->status == 3)
+                                        <span class="badge badge-danger">{{ $row->pesan }}</span>
+                                    @else
+                                        <p>Silahkan datang ke KUA untuk konfirmasi</p>
                                     @endif
                                 </td>
                             </tr>

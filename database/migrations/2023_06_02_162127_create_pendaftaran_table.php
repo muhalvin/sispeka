@@ -38,6 +38,8 @@ return new class extends Migration
             $table->string('surat_dispen')->nullable();
             $table->string('akta_cerai')->nullable();
             $table->enum('status',['1', '2', '3'])->nullable();
+            $table->date('tanggal_pilihan')->nullable();
+            $table->string('pesan')->nullable();
             $table->timestamps();
         });
     }

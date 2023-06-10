@@ -334,6 +334,16 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="mt-3">Tanggal Pilihan</label>
+                            <input type="date" class="form-control form-control-user" name="tanggal_pilihan"
+                                value="{{ old('tanggal_pilihan') }}" required>
+                            @error('tanggal_pilihan')
+                                <div class="alert alert-danger mt-1 mb-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
 
                     </div>

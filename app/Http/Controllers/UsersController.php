@@ -69,6 +69,7 @@ class UsersController extends Controller
             'foto_pengantin_pr'         => 'required|mimes:png,jpg,jpeg|max:2048',
             'surat_dispen'              => 'mimetypes:application/pdf|max:2048',
             'akta_cerai'                => 'mimetypes:application/pdf|max:2048',
+            'tanggal_pilihan'           => 'required',
         ],
         [
             'user_id.required'                      => 'Kolom Tidak Boleh Dikosongi',
@@ -93,6 +94,7 @@ class UsersController extends Controller
             'surat_pernyataan_status.required'      => 'Kolom Tidak Boleh Dikosongi',
             'foto_pengantin_lk.required'            => 'Kolom Tidak Boleh Dikosongi',
             'foto_pengantin_pr.required'            => 'Kolom Tidak Boleh Dikosongi',
+            'tanggal_pilihan.required'              => 'Kolom Tidak Boleh Dikosongi',
 
             'ktp_lk.max'                            => 'Ukuran File Maksimal 2 MB',
             'ktp_pr.max'                            => 'Ukuran File Maksimal 2 MB',
@@ -139,6 +141,7 @@ class UsersController extends Controller
             $foto_pengantin_pr              = $request->file('foto_pengantin_pr');
             $surat_dispen                   = $request->file('surat_dispen');
             $akta_cerai                     = $request->file('akta_cerai');
+            $tanggal_pilihan                = $request->file('tanggal_pilihan');
 
             $file_ktp_lk                    = date('Y-m-d').(' ').$ktp_lk->getClientOriginalName();
             $file_ktp_pr                    = date('Y-m-d').(' ').$ktp_pr->getClientOriginalName(); 
@@ -242,6 +245,7 @@ class UsersController extends Controller
             'surat_dispen'                  => $file_surat_dispen,
             'akta_cerai'                    => $file_akta_cerai,
             'status'                        => 1,
+            'tanggal_pilihan'               => $request->tanggal_pilihan,
             'created_at'                    => now(),
             'updated_at'                    => now(),
             ]);

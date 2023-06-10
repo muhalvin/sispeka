@@ -73,6 +73,8 @@ class AdminController extends Controller
                 ->where('pendaftaran.user_id', '=', $user_id)
                 ->get();
 
+        $id = DB::table('pendaftaran')->where('user_id', $user_id)->value('id');                
+
         $jadwal = DB::table('pendaftaran')
                 ->leftJoin('jadwals', 'jadwals.user_id', '=', 'pendaftaran.user_id')
                 ->where('pendaftaran.user_id', '=', $user_id)
@@ -81,6 +83,7 @@ class AdminController extends Controller
         return view('admin/pendaftaran/detail')->with([
             'title'     => 'Detail Pendaftaran',
             'users'     => $users,
+            'id'        => $id,
             'jadwal'    => $jadwal,
         ]);
     }
@@ -88,17 +91,34 @@ class AdminController extends Controller
     public function updatePendaftaran($user_id)
     {
         $pendaftaran = DB::table('pendaftaran')
-              ->where('user_id', $user_id)
-              ->update(['status' => 2]);
+            ->where('user_id', $user_id)
+            ->update([
+                'status'    => 2,
+                'pesan'     => '',
+            ]);
 
         return redirect()->back()->with('sukses', 'Pendaftaran Nikah Disetujui!');
     }
 
-    public function tolakPendaftaran($user_id)
+    // public function tolakPendaftaran($user_id)
+    // {
+    //     $pendaftaran = DB::table('pendaftaran')
+    //         ->where('user_id', $user_id)
+    //         ->update([
+    //             'status' => 3
+    //         ]);
+
+    //     return redirect()->back()->with('ditolak', 'Pendaftaran Nikah Ditolak!');
+    // }
+    
+    public function tolakPendaftaran(Request $request, $id)
     {
         $pendaftaran = DB::table('pendaftaran')
-              ->where('user_id', $user_id)
-              ->update(['status' => 3]);
+            ->where('id', $id)
+            ->update([
+                'status'    => 3,
+                'pesan'     => $request->pesan,
+            ]);
 
         return redirect()->back()->with('ditolak', 'Pendaftaran Nikah Ditolak!');
     }

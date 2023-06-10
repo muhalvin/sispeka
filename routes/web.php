@@ -47,7 +47,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 
     Route::get('pendaftaran', [AdminController::class, 'pendaftaran'])->name('pendaftaran');
     Route::get('detail-pendaftaran/{id}', [AdminController::class, 'detailPendaftaran'])->name('detail-pendaftaran/');
     Route::post('update-pendaftaran/{id}', [AdminController::class, 'updatePendaftaran'])->name('update-pendaftaran/');
-    Route::get('tolak-pendaftaran/{id}', [AdminController::class, 'tolakPendaftaran'])->name('tolak-pendaftaran/');
+    // Route::get('tolak-pendaftaran/{id}', [AdminController::class, 'tolakPendaftaran'])->name('tolak-pendaftaran/');
+    Route::patch('tolak-pendaftaran/{id}', [AdminController::class, 'tolakPendaftaran'])->name('tolak-pendaftaran/');
     
     Route::post('create-jadwal', [AdminController::class, 'createJadwal'])->name('create-jadwal');
 

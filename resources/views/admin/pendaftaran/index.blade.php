@@ -16,6 +16,7 @@
                             <th>No</th>
                             <th>Nama Pengantin Pria</th>
                             <th>Nama Pengantin Wanita</th>
+                            <th>Tanggal Pilihan</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -26,6 +27,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $row->nama_pengantin_lk }}</td>
                                 <td>{{ $row->nama_pengantin_pr }}</td>
+                                <td>{{ $row->tanggal_pilihan }}</td>
                                 <td>
                                     @if ($row->status == 1)
                                         <a class="badge badge-warning">Proses</a>
