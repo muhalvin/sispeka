@@ -14,13 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // DB::table('users')->insert([
-        //     'name'              => 'Administrator',
-        //     'email'             => 'admin@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'role'              => 'admin',
-        //     'password'          => Hash::make('admin'),
-        //     'created_at'        => now(),
-        // ]);
+        $userData = [
+            [
+                'name'              => 'Administrator',
+                'email'             => 'admin@gmail.com',
+                'email_verified_at' => now(),
+                'role'              => 'admin',
+                'password'          => Hash::make('admin'),
+                'created_at'        => now(),
+            ],
+        ];
+
+        foreach ($userData as $key => $value) {
+            User::create($value);
+        }
     }
 }
