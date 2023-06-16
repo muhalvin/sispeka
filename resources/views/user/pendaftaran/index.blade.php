@@ -11,8 +11,6 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"></h6>
-            @foreach ($users as $row)
-            @endforeach
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -44,10 +42,14 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($row->status == 3)
+                                    @if ($row->status == 2)
+                                        <span class="badge badge-success">
+                                            Silahkan datang ke KUA untuk melakukan konfirmasi
+                                        </span>
+                                    @elseif ($row->status == 3)
                                         <span class="badge badge-danger">{{ $row->pesan }}</span>
                                     @else
-                                        <p>Silahkan datang ke KUA untuk konfirmasi</p>
+                                        -
                                     @endif
                                 </td>
                             </tr>

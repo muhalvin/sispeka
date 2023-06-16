@@ -58,6 +58,7 @@ class AdminController extends Controller
     {
         $users = DB::table('pendaftaran')
             ->leftJoin('users', 'users.id', '=', 'pendaftaran.user_id')
+            ->orderByDesc('pendaftaran.id')
             ->get();
             
         return view('admin/pendaftaran/index')->with([
@@ -157,6 +158,7 @@ class AdminController extends Controller
         $jadwal = DB::table('jadwals')
                 ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
                 ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
+                ->orderByDesc('jadwals.id')
                 ->get();
             
         return view('admin/jadwal/index')->with([
