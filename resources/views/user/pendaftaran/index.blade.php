@@ -20,7 +20,7 @@
                             <th>No</th>
                             <th>Nama Pengantin Pria</th>
                             <th>Nama Pengantin Wanita</th>
-                            <th>Tanggal Pilihan</th>
+                            <th>Tanggal Pernikahan</th>
                             <th>Status</th>
                             <th>Komentar</th>
                         </tr>

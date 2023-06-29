@@ -17,7 +17,7 @@
                                 value="{{ $user_id }}" readonly required>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Nama Pengantin Pria</label>
+                            <label>Nama Pengantin Pria <span style="color: red;">*</span></label>
                             <input type="text" class="form-control form-control-user" name="nama_pengantin_lk"
                                 value="{{ old('nama_pengantin_lk') }}" required>
 
@@ -28,7 +28,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Nama Pengantin Wanita</label>
+                            <label>Nama Pengantin Wanita <span style="color: red;">*</span></label>
                             <input type="text" class="form-control form-control-user" name="nama_pengantin_pr"
                                 value="{{ old('nama_pengantin_pr') }}" required>
                             @error('nama_pengantin_pr')
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Umur Pria</label>
+                            <label>Umur Pria <span style="color: red;">*</span></label>
                             <input type="int" maxlength="2" class="form-control form-control-user" name="umur_lk"
                                 value="{{ old('umur_lk') }}" required>
                             @error('umur_lk')
@@ -48,7 +48,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Umur Wanita</label>
+                            <label>Umur Wanita <span style="color: red;">*</span></label>
                             <input type="int" maxlength="2" class="form-control form-control-user" name="umur_pr"
                                 value="{{ old('umur_pr') }}" required>
                             @error('umur_pr')
@@ -58,9 +58,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>KTP Pria</label>
+                            <label>KTP Pria <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="ktp_lk"
@@ -72,9 +72,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>KTP Wanita</label>
+                            <label>KTP Wanita <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="ktp_pr"
@@ -86,13 +86,13 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Foto Pengantin Pria</label>
+                            <label>Foto Pengantin Pria <span style="color: red;">*</span></label>
                             <div class="row-md-3 mb-3" style="border: 2px solid gray">
                                 <iframe src="" id="img" frameborder="1" width="100%"
                                     height="200vh"></iframe>
                             </div>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">File yang diunggah berekstensi jpg/jpeg/png ||
+                                <small style="color: gray; font-size: 10px;">File yang diunggah berekstensi jpg/jpeg/png ||
                                     maks. 2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="foto_pengantin_lk"
@@ -105,13 +105,13 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Foto Pengantin Wanita</label>
+                            <label>Foto Pengantin Wanita <span style="color: red;">*</span></label>
                             <div class="row-md-3 mb-3" style="border: 2px solid gray">
                                 <iframe src="" id="img2" frameborder="1" width="100%"
                                     height="200vh"></iframe>
                             </div>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">File yang diunggah berekstensi jpg/jpeg/png ||
+                                <small style="color: gray; font-size: 10px;">File yang diunggah berekstensi jpg/jpeg/png ||
                                     maks. 2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="foto_pengantin_pr"
@@ -124,9 +124,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Ijasah Pria</label>
+                            <label>Ijasah Pria <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="ijasah_lk"
@@ -138,9 +138,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Ijasah Wanita</label>
+                            <label>Ijasah Wanita <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="ijasah_pr"
@@ -152,9 +152,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Akta Kelahiran Pria</label>
+                            <label>Akta Kelahiran Pria <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="akta_lk"
@@ -166,9 +166,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Akta Kelahiran Wanita</label>
+                            <label>Akta Kelahiran Wanita <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="akta_pr"
@@ -180,9 +180,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Surat Pengantar</label>
+                            <label>Surat Pengantar <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="surat_pengantar"
@@ -194,9 +194,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Surat Keterangan Asal Pria</label>
+                            <label>Surat Keterangan Asal Pria <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="surat_asal_lk"
@@ -208,9 +208,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Surat Keterangan Asal Wanita</label>
+                            <label>Surat Keterangan Asal Wanita <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="surat_asal_pr"
@@ -222,9 +222,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Surat Persetujuan ORTU Pria</label>
+                            <label>Surat Persetujuan ORTU Pria <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="surat_persetujuan_ortu_lk"
@@ -236,9 +236,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Surat Persetujuan ORTU Wanita</label>
+                            <label>Surat Persetujuan ORTU Wanita <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="surat_persetujuan_ortu_pr"
@@ -250,9 +250,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Surat Izin Ortu Wanita</label>
+                            <label>Surat Izin Ortu Wanita <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="surat_izin_ortu_pr"
@@ -264,9 +264,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>KTP Wali</label>
+                            <label>KTP Wali <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="ktp_wali"
@@ -278,9 +278,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>FC Kutipan Akta</label>
+                            <label>FC Kutipan Akta <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="fc_kutipan_akta"
@@ -292,9 +292,9 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label>Surat Pernyataan Status</label>
+                            <label>Surat Pernyataan Status <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
-                                <small style="color: red; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
+                                <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
                             </div>
                             <input type="file" class="form-control form-control-user" name="surat_pernyataan_status"
@@ -307,7 +307,7 @@
                         </div>
 
                         <div class="col-md-6 mb-4">
-                            <label>Surat Dispen</label>
+                            <label>Surat Dispen <span style="color: red;">*</span></label>
                             <div class="row-md-6" style="margin-top: -1vh;">
                                 <small style="color: gray; font-size: 10px;">file yang diunggah berekstensi pdf || maks.
                                     2 MB</small>
@@ -335,7 +335,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-4">
-                            <label class="mt-3">Tanggal Pilihan</label>
+                            <label class="mt-3">Tanggal Pernikahan <span style="color: red;">*</span></label>
                             <input type="date" class="form-control form-control-user" name="tanggal_pilihan"
                                 value="{{ old('tanggal_pilihan') }}" required>
                             @error('tanggal_pilihan')
@@ -344,8 +344,26 @@
                                 </div>
                             @enderror
                         </div>
-
-
+                        <div class="col-md-6 mb-4">
+                            <label class="mt-3">Tempat Nikah <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control form-control-user" name="tempat_nikah"
+                                value="{{ old('tempat_nikah') }}" required>
+                            @error('tempat_nikah')
+                                <div class="alert alert-danger mt-1 mb-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="mt-3">Alamat</label>
+                            <input type="text" class="form-control form-control-user" name="alamat"
+                                value="{{ old('alamat') }}">
+                            @error('alamat')
+                                <div class="alert alert-danger mt-1 mb-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">

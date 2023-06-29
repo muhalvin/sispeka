@@ -50,7 +50,7 @@ class LoginController extends Controller
                 Session::put('email', $user->email);
                 Session::put('role', $user->role);
                 
-                return redirect()->route('dashboard');
+                return redirect()->route('dashboard')->with('sukses', 'Anda berhasil masuk!');
             } else {
                 return redirect()->route('login')->with('gagal', 'Kamu tidak memiliki akses!');
             }

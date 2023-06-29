@@ -70,6 +70,8 @@ class UsersController extends Controller
             'surat_dispen'              => 'mimetypes:application/pdf|max:2048',
             'akta_cerai'                => 'mimetypes:application/pdf|max:2048',
             'tanggal_pilihan'           => 'required',
+            'tempat_nikah'              => 'required|string',
+            'alamat'                    => 'string',
         ],
         [
             'user_id.required'                      => 'Kolom Tidak Boleh Dikosongi',
@@ -95,6 +97,7 @@ class UsersController extends Controller
             'foto_pengantin_lk.required'            => 'Kolom Tidak Boleh Dikosongi',
             'foto_pengantin_pr.required'            => 'Kolom Tidak Boleh Dikosongi',
             'tanggal_pilihan.required'              => 'Kolom Tidak Boleh Dikosongi',
+            'tempat_nikah.required'                 => 'Kolom Tidak Boleh Dikosongi',
 
             'ktp_lk.max'                            => 'Ukuran File Maksimal 2 MB',
             'ktp_pr.max'                            => 'Ukuran File Maksimal 2 MB',
@@ -246,6 +249,8 @@ class UsersController extends Controller
             'akta_cerai'                    => $file_akta_cerai,
             'status'                        => 1,
             'tanggal_pilihan'               => $request->tanggal_pilihan,
+            'tempat_nikah'                  => $request->tempat_nikah,
+            'alamat'                        => $request->alamat,
             'created_at'                    => now(),
             'updated_at'                    => now(),
             ]);

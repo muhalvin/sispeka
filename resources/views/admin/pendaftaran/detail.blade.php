@@ -54,6 +54,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3 mt-3">
+                                <label>Tempat Akad Nikah</label>
+                                <input type="text" class="form-control" value="{{ $item->tempat_nikah }}" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3 mt-3">
+                                <label>Alamat Rumah</label>
+                                <input type="text" class="form-control" value="{{ $item->alamat }}" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3 mt-3">
                                 <label>Tanggal Pilihan</label>
                                 <input type="text" class="form-control" value="{{ $item->tanggal_pilihan }}" readonly>
                             </div>
@@ -355,7 +363,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label>Tanggal</label>
                                         <input type="date" class="form-control form-control-user" name="tanggal"
-                                            value="">
+                                            value="{{ $item->tanggal_pilihan }}">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label>Jam</label>
