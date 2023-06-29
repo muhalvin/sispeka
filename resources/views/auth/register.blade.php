@@ -11,7 +11,7 @@
                         <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-3">Registrasi Akun</h1>
+                                    <h1 class="h4 text-gray-900 mb-3">KUA PETERONGAN</h1>
                                     <p>Silahkan isi data pada kolom yang tersedia!</p>
                                 </div>
 
