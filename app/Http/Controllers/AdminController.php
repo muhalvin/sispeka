@@ -100,17 +100,6 @@ class AdminController extends Controller
 
         return redirect()->back()->with('sukses', 'Pendaftaran Nikah Disetujui!');
     }
-
-    // public function tolakPendaftaran($user_id)
-    // {
-    //     $pendaftaran = DB::table('pendaftaran')
-    //         ->where('user_id', $user_id)
-    //         ->update([
-    //             'status' => 3
-    //         ]);
-
-    //     return redirect()->back()->with('ditolak', 'Pendaftaran Nikah Ditolak!');
-    // }
     
     public function tolakPendaftaran(Request $request, $id)
     {

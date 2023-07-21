@@ -41,7 +41,7 @@ class LoginController extends Controller
                 Session::put('email', $user->email);
                 Session::put('role', $user->role);
                 
-                return redirect()->route('admin/dashboard');
+                return redirect()->route('admin/dashboard')->with('sukses', 'Anda berhasil masuk!');
             } elseif (Auth::user()->role == 'user') {
 
                 $user = Auth::user();

@@ -17,6 +17,11 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
+Route::get('/storage-link', function() {
+    Artisan::call('storage:link');
+    return 'The links have been created.';
+});
+
 /* 
     Register Routes 
 */
