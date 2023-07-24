@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\NikahChart;
+use App\Charts\PendaftarChart;
+use App\Charts\UsersChart;
 use App\Models\Jadwal;
 use App\Models\Pendaftaran;
 use App\Models\User;
@@ -11,46 +14,42 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request, UsersChart $usersChart, PendaftarChart $pendaftarChart, NikahChart $nikahChart)
     {
-        $users = DB::table('users')
-            ->where('role','=','user')
-            ->get();
-        $jml_user = $users->count();
-        
-        $pendaftar = DB::table('pendaftaran')
-            ->get();
-        $jml_daftar = $pendaftar->count();
+        $now = date('Y-m-d');
+        $oneWeekAfter = date('Y-m-d', strtotime('+1 week', strtotime($now)));
 
-        $pendaftar_proses = DB::table('pendaftaran')
-            ->where('status', '=', 1)
-            ->get();
-        $jml_proses = $pendaftar_proses->count();
-        
-        $pendaftar_selesai = DB::table('pendaftaran')
-            ->where('status', '=', 2)
-            ->get();
-        $jml_selesai = $pendaftar_selesai->count();
-        
-        $pendaftar_ditolak = DB::table('pendaftaran')
-            ->where('status', '=', 3)
-            ->get();
-        $jml_ditolak = $pendaftar_ditolak->count();
-        
-        $sql = DB::table('jadwals')
-            ->where('tanggal', '>', now())
-            ->get();
-        $nikah = $sql->count();
-            
-        return view('admin/dashboard/index')->with([
-            'title'         => 'Dashboard',
-            'jml_user'      => $jml_user,
-            'jml_daftar'    => $jml_daftar,
-            'jml_proses'    => $jml_proses,
-            'jml_ditolak'   => $jml_ditolak,
-            'jml_selesai'   => $jml_selesai,
-            'jadwal_nikah'  => $nikah,
-        ]);
+        $oneMonthAfter = date('Y-m-d', strtotime('+4 week', strtotime($now)));
+
+        if ($request->has('search')) {
+            if ($request->search == 'week') {
+                $data = DB::table('jadwals as a')
+                    ->join('pendaftaran as b', 'b.user_id', '=', 'a.user_id')
+                    ->join('users as c', 'c.id', '=', 'b.user_id')
+                    ->whereDate('a.tanggal', '<=', $oneWeekAfter)
+                    ->paginate(10);
+            } elseif ($request->search == 'month') {
+                $data = DB::table('jadwals as a')
+                    ->join('pendaftaran as b', 'b.user_id', '=', 'a.user_id')
+                    ->join('users as c', 'c.id', '=', 'b.user_id')
+                    ->whereDate('a.tanggal', '<=', $oneMonthAfter)
+                    ->paginate(10);
+            } else {
+                $data = DB::table('jadwals as a')
+                    ->join('pendaftaran as b', 'b.user_id', '=', 'a.user_id')
+                    ->join('users as c', 'c.id', '=', 'b.user_id')
+                    ->whereDate('a.tanggal', '<=', $oneWeekAfter)
+                    ->paginate(10);
+            }
+        } else {
+            $data = DB::table('jadwals as a')
+                ->join('pendaftaran as b', 'b.user_id', '=', 'a.user_id')
+                ->join('users as c', 'c.id', '=', 'b.user_id')
+                ->whereDate('a.tanggal', '<=', $oneWeekAfter)
+                ->paginate(10);
+        }
+
+        return view('admin/dashboard/index', ['title' => 'Dashboard', 'usersChart' => $usersChart->build(), 'pendaftarChart' => $pendaftarChart->build(), 'nikahChart' => $nikahChart->build(), 'show' => $data]);
     }
 
     // Menu Pendaftaran
@@ -60,7 +59,7 @@ class AdminController extends Controller
             ->leftJoin('users', 'users.id', '=', 'pendaftaran.user_id')
             ->orderByDesc('pendaftaran.id')
             ->get();
-            
+
         return view('admin/pendaftaran/index')->with([
             'title'         => 'Pendaftaran Nikah',
             'users'         => $users
@@ -70,16 +69,16 @@ class AdminController extends Controller
     public function detailPendaftaran($user_id)
     {
         $users = DB::table('pendaftaran')
-                ->leftJoin('users', 'users.id', '=', 'pendaftaran.user_id')
-                ->where('pendaftaran.user_id', '=', $user_id)
-                ->get();
+            ->leftJoin('users', 'users.id', '=', 'pendaftaran.user_id')
+            ->where('pendaftaran.user_id', '=', $user_id)
+            ->get();
 
-        $id = DB::table('pendaftaran')->where('user_id', $user_id)->value('id');                
+        $id = DB::table('pendaftaran')->where('user_id', $user_id)->value('id');
 
         $jadwal = DB::table('pendaftaran')
-                ->leftJoin('jadwals', 'jadwals.user_id', '=', 'pendaftaran.user_id')
-                ->where('pendaftaran.user_id', '=', $user_id)
-                ->get();
+            ->leftJoin('jadwals', 'jadwals.user_id', '=', 'pendaftaran.user_id')
+            ->where('pendaftaran.user_id', '=', $user_id)
+            ->get();
 
         return view('admin/pendaftaran/detail')->with([
             'title'     => 'Detail Pendaftaran',
@@ -100,7 +99,7 @@ class AdminController extends Controller
 
         return redirect()->back()->with('sukses', 'Pendaftaran Nikah Disetujui!');
     }
-    
+
     public function tolakPendaftaran(Request $request, $id)
     {
         $pendaftaran = DB::table('pendaftaran')
@@ -127,7 +126,7 @@ class AdminController extends Controller
 
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->messages())->withInput();
-        } else { 
+        } else {
             Jadwal::create([
                 'user_id'       => $request->user_id,
                 'penghulu'      => $request->penghulu,
@@ -145,11 +144,11 @@ class AdminController extends Controller
     public function showJadwal()
     {
         $jadwal = DB::table('jadwals')
-                ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
-                ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
-                ->orderByDesc('jadwals.id')
-                ->get();
-            
+            ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
+            ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
+            ->orderByDesc('jadwals.id')
+            ->get();
+
         return view('admin/jadwal/index')->with([
             'title'         => 'Jadwal Pelaksanaan Nikah',
             'jadwal'         => $jadwal
@@ -159,11 +158,11 @@ class AdminController extends Controller
     public function showDetailJadwal(Request $request, $user_id)
     {
         $jadwal = DB::table('jadwals')
-                ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
-                ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
-                ->where('users.id', '=', $user_id)
-                ->get();
-            
+            ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
+            ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
+            ->where('users.id', '=', $user_id)
+            ->get();
+
         return view('admin/jadwal/detail')->with([
             'title'         => 'Jadwal Pelaksanaan Nikah',
             'jadwal'         => $jadwal
@@ -185,7 +184,7 @@ class AdminController extends Controller
 
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->messages())->withInput();
-        } else { 
+        } else {
             $jadwal = DB::table('jadwals')
                 ->leftJoin('users', 'users.id', '=', 'jadwals.user_id')
                 ->leftJoin('pendaftaran', 'pendaftaran.user_id', '=', 'users.id')
@@ -197,7 +196,7 @@ class AdminController extends Controller
                     'jam'       => $request->jam,
                 ]);
 
-        return redirect()->back()->with('sukses', 'Jadwal Pelaksanaan Nikah Diperbarui!');
+            return redirect()->back()->with('sukses', 'Jadwal Pelaksanaan Nikah Diperbarui!');
         }
     }
 }

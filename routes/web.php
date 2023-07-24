@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/storage-link', function() {
+Route::get('/storage-link', function () {
     Artisan::call('storage:link');
     return 'The links have been created.';
 });
@@ -46,7 +47,7 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Admin Routes 
 */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 'as' => 'admin/'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 'as' => 'admin/'], function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     Route::get('pendaftaran', [AdminController::class, 'pendaftaran'])->name('pendaftaran');
@@ -54,7 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 
     Route::post('update-pendaftaran/{id}', [AdminController::class, 'updatePendaftaran'])->name('update-pendaftaran/');
     // Route::get('tolak-pendaftaran/{id}', [AdminController::class, 'tolakPendaftaran'])->name('tolak-pendaftaran/');
     Route::patch('tolak-pendaftaran/{id}', [AdminController::class, 'tolakPendaftaran'])->name('tolak-pendaftaran/');
-    
+
     Route::post('create-jadwal', [AdminController::class, 'createJadwal'])->name('create-jadwal');
 
     Route::get('penjadwalan', [AdminController::class, 'showJadwal'])->name('penjadwalan');
@@ -68,10 +69,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userAkses:admin'], 
 
 Route::middleware(['auth', 'userAkses:user'])->group(function () {
     Route::get('dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
-    
+
     Route::get('pendaftaran', [UsersController::class, 'pendaftaran'])->name('pendaftaran');
     Route::get('createPendaftaran', [UsersController::class, 'create'])->name('createPendaftaran');
     Route::post('storePendaftaran', [UsersController::class, 'store'])->name('storePendaftaran');
-    
+
     Route::get('penjadwalan', [UsersController::class, 'showJadwal'])->name('penjadwalan');
 });
