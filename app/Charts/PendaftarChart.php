@@ -22,11 +22,7 @@ class PendaftarChart
 
         $data = [$proses, $selesai, $tolak];
 
-        $labels = [
-            $proses => 'Proses',
-            $selesai => 'Selesai',
-            $tolak => 'Ditolak'
-        ];
+        $labels = ['Proses', 'Selesai', 'Ditolak'];
 
         return $this->chart->donutChart()
             ->setTitle('Pendaftaran')
