@@ -6,8 +6,6 @@ use App\Charts\NikahChart;
 use App\Charts\PendaftarChart;
 use App\Charts\UsersChart;
 use App\Models\Jadwal;
-use App\Models\Pendaftaran;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -35,21 +33,35 @@ class AdminController extends Controller
                     ->whereDate('a.tanggal', '<=', $oneMonthAfter)
                     ->paginate(10);
             } else {
+                // If neither 'week' nor 'month' is selected, show all records within a certain date range.
                 $data = DB::table('jadwals as a')
                     ->join('pendaftaran as b', 'b.user_id', '=', 'a.user_id')
                     ->join('users as c', 'c.id', '=', 'b.user_id')
-                    ->whereDate('a.tanggal', '<=', $oneWeekAfter)
+                    ->whereDate('a.tanggal', '<=', now()) // 'now()' will give the current date.
                     ->paginate(10);
             }
         } else {
+            // If 'search' parameter is not present, show all records within a certain date range.
             $data = DB::table('jadwals as a')
                 ->join('pendaftaran as b', 'b.user_id', '=', 'a.user_id')
                 ->join('users as c', 'c.id', '=', 'b.user_id')
-                ->whereDate('a.tanggal', '<=', $oneWeekAfter)
+                ->whereDate('a.tanggal', '<=', now()) // 'now()' will give the current date.
                 ->paginate(10);
         }
 
-        return view('admin/dashboard/index', ['title' => 'Dashboard', 'usersChart' => $usersChart->build(), 'pendaftarChart' => $pendaftarChart->build(), 'nikahChart' => $nikahChart->build(), 'show' => $data]);
+
+        $proses = DB::table('pendaftaran')->where('status', '=', 1)->count();
+        $selesai = DB::table('pendaftaran')->where('status', '=', 2)->count();
+        $tolak = DB::table('pendaftaran')->where('status', '=', 3)->count();
+        $total = DB::table('pendaftaran')->count();
+
+        return view('admin/dashboard/index', [
+            'title' => 'Dashboard', 'usersChart' => $usersChart->build(), 'pendaftarChart' => $pendaftarChart->build(), 'nikahChart' => $nikahChart->build(), 'show' => $data,
+            'proses' => $proses,
+            'selesai' => $selesai,
+            'tolak' => $tolak,
+            'total' => $total,
+        ]);
     }
 
     // Menu Pendaftaran

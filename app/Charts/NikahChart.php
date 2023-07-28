@@ -17,7 +17,7 @@ class NikahChart
     public function build(): \ArielMejiaDev\LarapexCharts\PieChart
     {
         $sql = DB::table('jadwals')
-            ->where('tanggal', '>', now())
+            ->where('tanggal', '>=', now())
             ->get();
 
         $nikah = $sql->count(); // Count the number of records returned

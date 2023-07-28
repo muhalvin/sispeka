@@ -16,8 +16,8 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->string('nama_pengantin_lk')->nullable();
             $table->string('nama_pengantin_pr')->nullable();
-            $table->integer('umur_lk')->nullable();
-            $table->integer('umur_pr')->nullable();
+            $table->date('umur_lk')->nullable();
+            $table->date('umur_pr')->nullable();
             $table->string('ktp_lk')->nullable();
             $table->string('ktp_pr')->nullable();
             $table->string('ijasah_lk')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('foto_pengantin_pr')->nullable();
             $table->string('surat_dispen')->nullable();
             $table->string('akta_cerai')->nullable();
-            $table->enum('status',['1', '2', '3'])->nullable();
+            $table->enum('status', ['1', '2', '3'])->nullable();
             $table->date('tanggal_pilihan')->nullable();
             $table->string('tempat_nikah')->nullable();
             $table->string('alamat')->nullable();

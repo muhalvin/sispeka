@@ -19,12 +19,18 @@ class UsersChart
         $users = DB::table('users')
             ->where('role', '=', 'user')
             ->get();
-        $data = [$users->count()];
+        $admin = DB::table('users')
+            ->where('role', '=', 'admin')
+            ->get();
+        $data = [
+            $users->count(),
+            $admin->count(),
+        ];
 
         return $this->chart->pieChart()
             ->setTitle('Jumlah Users')
             ->setSubtitle(date('Y'))
             ->addData($data)
-            ->setLabels(['Users']);
+            ->setLabels(['Users', 'Admin']);
     }
 }
